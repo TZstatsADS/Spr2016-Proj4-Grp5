@@ -5,7 +5,6 @@ setwd("Documents/Spring2016/DataScience/Project4/")
 library(dplyr)
 library(data.table)
 library(caret)
-library(ROCR)
 
 #################### Prepare Data ####################
 
@@ -25,7 +24,7 @@ for(i in 1:length(twitter_data$Genre)){
 }
 
 oscar_movies <- left_join(oscar_asin, movies, by = c("ASIN" = "product_productid"))
-final_data <- subset(left_join(oscar_movies, twitter_data, by = c("Title" = "Title")), select=c(3,8,15,16))
+final_data <- subset(left_join(oscar_movies, twitter_data, by = c("Title" = "Title")), select=c(3,8,11,12))
 
 # Split into training and testing data
 train<-sample_frac(final_data, 0.7)

@@ -8,3 +8,10 @@
   stroke: #999;
   stroke-opacity: .3;
 }
+
+h2 {
+  font-style: normal;
+  color:rgba(51, 51, 51, 0.73); 
+  font-size:25px; 
+  color: #a94442;
+}
