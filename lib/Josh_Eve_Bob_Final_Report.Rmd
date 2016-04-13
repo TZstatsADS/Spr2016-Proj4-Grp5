@@ -308,11 +308,11 @@ Based on the distance matrix we got from the network, we build a recommendation 
 
 Imagine this scenario...
 
-<i><h3 style="font-size:20px;color: #9ACD32;">You wanna watch a movie but have no idea what movie to see. </h3></i>
+<i><h3 style="font-size:20px;color: #9ACD32;">You want to watch a good movie but have no idea what to see. </h3></i>
 
-<i><h3 style="font-size:20px;color: #9ACD32;">You want to see an Oscar movie but there are so many movies that have won the Oscars. </h3></i>
+<i><h3 style="font-size:20px;color: #9ACD32;">You want to watch an Oscar movie but there are so many movies that have won the Oscars. </h3></i>
 
-<i><h3 style="font-size:20px;color: #9ACD32;">You want a movie with a specific genre but don't wanna waste time on a stinker.<br> <br></h3></i>
+<i><h3 style="font-size:20px;color: #9ACD32;">You want a movie with a specific genre but don't want to waste time on a stinker.<br> <br></h3></i>
 
 <div style="text-align: center;">
  <span style="float:center;width: 200px;">
@@ -331,11 +331,13 @@ Imagine this scenario...
 
 Pretty simple!
 
-Choose the closest one to your favorite Oscar movie among Oscar nominations with the genre you want to try.
+Choose the closest one to your favorite Oscar movie among Oscar nominations with the genre you want to try. 
+
+We will recommend a movie you may like.
 
 <i><h2 style="font-size:25px;">How does it work?</h2></i>
 
-Excellent!
+Recommend a  movie of certain type, which has the smallest distance with the movie chosen by users.
 
 This is our recommendation:<br><br>
 
