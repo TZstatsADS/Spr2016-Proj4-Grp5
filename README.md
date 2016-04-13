@@ -9,5 +9,5 @@ For our project we wanted to explore the Amazon Movies data set with a focus on 
 Read our [project report](http://minnich49.github.io/Project_4_Host/) for more information.
 
 ### Contribution Statement
-In this project, we used a netowork allows us to create distance matrices that can allow analysis for clustering and recommendations. Based on the analysis, we built a recommendation engine by Shiny App. We also predicted the winner of Best Picture based on the Amazon dataset.
+In this project, we used a netowork allows us to create distance matrices that can allow analysis for clustering and recommendations. Based on the analysis, we built a recommendation engine by Shiny App. We also predicted the winner of Best Picture based on the Amazon dataset. Bob Minnich worked on creating the network using Python and performed analysis using Shortest Path, Clique, MDS, distance recommendation based on movies seen, produced pairwise distance matrix between all movie nodes and designed a D3 network to represent the network analyzed.
 
