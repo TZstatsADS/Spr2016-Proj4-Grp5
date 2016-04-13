@@ -283,8 +283,13 @@ summary(fit)
 summary(fit)$coeff[-1,4] < 0.05
 ```
 
-Our model fits very well, with an average of 81% accuracy in correctly choosing which nominated movies would win Best Picture. In addition, we analyzed the variables within the model to determine statistically significance. Interestingly, the Amazon movie review score was not deemed statistically significant, while the Twitter score and main genre were significant.
+Our model fits very well, with an average of 81% accuracy in correctly choosing which nominated movies would win Best Picture. In addition, we analyzed the variables within the model to determine statistical significance. Interestingly, the Amazon movie review score (review_score) was not deemed statistically significant, while the Twitter score (Score) and Twitter determined genres (factors) were significant.
 
+<div style="text-align: center;">
+ <span style="float:center;width: 200px;">
+   <IMG SRC="statistically_sig.png" ALT="image" width=100%>
+ </span>
+</div>
 
 <i><h2 style="font-size:25px;">Shiny App</h2></i>
 Based on the distance matrix we got from the network, we build a recommendation engine for oscar movies.
