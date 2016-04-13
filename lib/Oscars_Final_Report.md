@@ -5,7 +5,7 @@
 
 <div style="text-align: center;">
  <span style="float:center;width: 200px;">
-   <IMG SRC="Academy_Award_trophy.jpg" ALT="image" width="100px">
+   <img src="img/Academy_Award_trophy.jpg" ALT="image" width="100px">
  </span>
 </div>
 
@@ -17,7 +17,7 @@ For our project we wanted to explore the Amazon Movies data set with a focus on 
 Graph theory was used in order to determine distances between Users, Movies and Oscars. Graph theory offers a nice way to try and relationships between users and movies. Below is an example of how to use graph theory using Amazon reviews:
 <div style="text-align: center;">
  <span style="float:center;width: 200px;">
-   <IMG SRC="Slide1.jpg" ALT="image" width="450px">
+   <IMG SRC="img/Slide1.jpg" ALT="image" width="450px">
  </span>
 </div>
 From this graph we now have a metric that we can use between all pairwise nodes within a graph. For instance we can now find similar users within a graph, by closest distance and similar movies within the same way.
@@ -27,7 +27,7 @@ In order to improve our network, we want to define the distance by the review sc
 
 <div style="text-align: center;">
  <span style="float:center;width: 200px;">
-   <IMG SRC="weightededge.png" ALT="image" width="400px">
+   <IMG SRC="img/weightededge.png" ALT="image" width="400px">
  </span>
 </div>
 
@@ -47,7 +47,7 @@ In order to focus on a specific area of the Amazon Movie Review dataset we decid
 
 <div style="text-align: center;">
  <span style="float:center;width: 200px;">
-   <IMG SRC="Slide6.jpg" ALT="image" width="400px">
+   <IMG SRC="img/Slide6.jpg" ALT="image" width="400px">
  </span>
 </div>
 <i><h2 style="font-size:25px;">Movies Seen by a Reviewer</h2></i>
@@ -56,7 +56,7 @@ As an example of our graph what we will do is choose the user with the smallest 
 This user had seen the following movies:
 <div style="text-align: center;">
  <span style="float:center;width: 200px;">
-   <IMG SRC="Slide2.jpg" ALT="image" width="200px">
+   <IMG SRC="img/Slide2.jpg" ALT="image" width="200px">
  </span>
 </div>
 
@@ -65,7 +65,7 @@ From our network we can look up a user, and find the distances between that user
 
 <div style="text-align: center;">
  <span style="float:center;width: 200px;">
-   <IMG SRC="Slide3.jpg" ALT="image" width="400px">
+   <IMG SRC="img/Slide3.jpg" ALT="image" width="400px">
  </span>
 </div>
 
@@ -76,7 +76,7 @@ We can also look at the movies that are farthest away from our user or the movie
 
 <div style="text-align: center;">
  <span style="float:center;width: 200px;">
-   <IMG SRC="Slide4.jpg" ALT="image" width="400px">
+   <IMG SRC="img/Slide4.jpg" ALT="image" width="400px">
  </span>
 </div>
 
@@ -93,12 +93,12 @@ Points that are larger in purple, are the movies that our user mentioned previou
 
 <div style="text-align: center;">
  <span style="float:center;width: 200px;">
-   <IMG SRC="MDS_FINAL_2.png" ALT="image" width=100%>
+   <IMG SRC="img/MDS_FINAL_2.png" ALT="image" width=100%>
  </span>
 </div>
 
 <i><h2 style="font-size:25px;">D3 Visualization</h2></i>
-D3 was used to visualize what our network looks like in an interactive form. In Blue we have our user that was mentioned previously in the report. In Purple, we have the movies that our user has seen and the reccommendations in Light Blue. 
+D3 was used to visualize what our network looks like in an interactive form. In Blue we have our user that was mentioned previously in the report. In Purple, we have the movies that our user has seen.
 
 In gold we have the oscar movies, Large Dark Gold are the movies that only one user has seen and each red node represents a user. Note that all other, non-oscar movies were removed to provide clairty. The black node is the user in the network with the most number of movies reviewed.
 
@@ -167,6 +167,7 @@ d3.json("data.json2", function(error, graph) {
             if(d.id == "B004FM2ENU" ){return 7;}
             else if (+d.neigh == 1){return 7;} 
             if(d.id == "B004FM2ENU" ){return 10;}
+            if (d.id == "A19ZXK9HHVRV1X"){return 7;} 
 
             if (d.desc == "movies") {return 5;} 
             else {return 4;}}) 
@@ -176,16 +177,16 @@ d3.json("data.json2", function(error, graph) {
             if(d.id == "American Beauty" ){return "#800080";}
             if(d.id == "District 9" ){return "#800080";}
             if(d.id == "The Hurt Locker" ){return "#800080";}
-            if(d.id == "Up" ){return "#43C6DB";}
-            if(d.id == "The Departed" ){return "#43C6DB";}
-            if(d.id == "The Insider" ){return "#43C6DB";}
-            if(d.id == "Borat" ){return "#43C6DB";}
-            if(d.id == "Borat" ){return "#43C6DB";}
+            //if(d.id == "Up" ){return "#43C6DB";}
+            //if(d.id == "The Departed" ){return "#43C6DB";}
+            //if(d.id == "The Insider" ){return "#43C6DB";}
+            //if(d.id == "Borat" ){return "#43C6DB";}
+            //if(d.id == "Borat" ){return "#43C6DB";}
 
             if(d.id == "B004FM2ENU" ){return "orange";}
             if(d.id == "A1J2931UBBJPXM" ){return "blue";}
             else if (+d.neigh == 1){return "#B8860B";} 
-            else if (+d.neigh == 57){return "black";} 
+            else if (d.id == "A19ZXK9HHVRV1X"){return "black";} 
 
             else if (d.desc == "movies") {return "green";} 
             else if (d.desc == "oscar") {return "#FFD700";} 
@@ -304,7 +305,7 @@ Our model fits very well, with an average of 81% accuracy in correctly choosing 
 
 <div style="text-align: center;">
  <span style="float:center;width: 200px;">
-   <IMG SRC="statistically_sig.png" ALT="image" width=100%>
+   <IMG SRC="img/statistically_sig.png" ALT="image" width=100%>
  </span>
 </div>
 
@@ -322,13 +323,13 @@ Imagine this scenario...
 
 <div style="text-align: center;">
  <span style="float:center;width: 200px;">
-   <IMG SRC="images-3.jpeg" ALT="image" width="200px">
+   <IMG SRC="img/images-3.jpeg" ALT="image" width="200px">
  </span>
 </div>
 <br> <br>
 <div style="text-align: left;">
  <span style="float:center;width: 200px;">
-   <IMG SRC="red-arrow-right-hi.png" ALT="image" width="100px">
+   <IMG SRC="img/red-arrow-right-hi.png" ALT="image" width="100px">
  </span>
 </div>
 <h1 style="text-align: center;">https://crimeradar.shinyapps.io/Recsys/</h1>
@@ -349,7 +350,7 @@ This is our recommendation:<br><br>
 
 <div style="text-align: center;">
  <span style="float:center;width: 200px;">
-   <IMG SRC="application.png" ALT="image" width="1000px">
+   <IMG SRC="img/application.png" ALT="image" width="1000px">
  </span>
 </div>
 <br>
@@ -357,7 +358,7 @@ This is our recommendation:<br><br>
 <br>
 <div style="text-align: center;">
  <span style="float:center;width: 200px;">
-   <IMG SRC="amazon.png" ALT="image" width="1000px">
+   <IMG SRC="img/amazon.png" ALT="image" width="1000px">
  </span>
 </div>
 
