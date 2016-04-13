@@ -1,7 +1,6 @@
 # Project 4 Mining Amazon Movies Reviews
 ### Using Amazon Movie Reviews to Analyze Oscar Nominations for Best Picture
 
-Term: Spring 2016
 Group Members: Bob Minnich, Rong Wang, Aoyuan Liao, Josh Dillon, Ziyue Jin
 
 ### Project Summary
