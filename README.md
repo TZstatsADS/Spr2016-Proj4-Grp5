@@ -1,25 +1,14 @@
-# Project 4 Collective intelligence
-### Mining Amazon Movies Reviews
+# Project 4 Mining Amazon Movies Reviews
+### Using Amazon Movie Reviews to Analyze Oscar Nominations for Best Picture
 
 Term: Spring 2016
+### Group Members: Bob Minnich, Rong Wang, Aoyuan Liao, Josh Dillon, Ziyue Jin
 
-In this project, we will explore relational data where the data were collected to have information on a set of individuals and on their relations. Part of the big data hype has been fueled by the availability of the huge amount of online human generated information on social networks, individual rating/preferences on products, opinions and views shared via social media (such as facebook, twitter, etc). Topics in this area include
+### Project Summary
+For our project we wanted to explore the Amazon Movies data set with a focus on the Oscars. We thought that this would be an interesting area to explore and try to determine if we can find any subpopulations of the movies by using graph theory as our distance metric. Using a netowork allows us to create distance matrices that can allow analysis for clustering and recommendations. Based on the analysis, we built a recommendation engine by Shiny App. We also wanted to determine if we could predict the winner of Best Picture based on the Amazon dataset.
 
-- Collective filtering
-- Clustering/community detection
-- Network analysis
-- Identity resolution
+Read our [project report](http://minnich49.github.io/Project_4_Host/) for more information.
 
-Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
-
-```
-proj/
-├── lib/
-├── data/
-├── doc/
-├── figs/
-└── output/
-```
-
-Please see each subfolder for a README file.
+### Contribution Statement
+In this project, we used a netowork allows us to create distance matrices that can allow analysis for clustering and recommendations. Based on the analysis, we built a recommendation engine by Shiny App. We also predicted the winner of Best Picture based on the Amazon dataset.
 
