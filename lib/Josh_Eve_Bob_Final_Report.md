@@ -15,8 +15,25 @@ Graph theory was used in order to determine distances between Users, Movies and 
 </div>
 From this graph we now have a metric that we can use between all pairwise nodes within a graph. For instance we can now find similar users within a graph, by closest distance and similar movies within the same way.
 
-<i><h2 style="font-size:25px;">Rating Adjustment and Calculation</h2></i>
-Give brief explanation of work here.
+<i><h2 style="font-size:25px;">Distance Adjustment and Calculation</h2></i>
+In order to improve our network, we want to define the distance by the review scores. The bigger the review score, the closer the user and the movie are. However, does all the reviews are reliable? How do we measure the credibility of each review?
+
+<div style="text-align: center;">
+ <span style="float:center;width: 200px;">
+   <IMG SRC="weightededge.png" ALT="image" width="400px">
+ </span>
+</div>
+
+
+```r
+movies.summary<-filter(movies.raw,review_h<=1)%>%
+     mutate(reviewUAvg=(review_score*user.count+3*3)/(user.count+3),
+            reviewHAvg=review_score*review_h+(1-review_h)*3,
+            reviewPAvg=(review_score*prod.count+3*6)/(prod.count+6))
+```
+We modified the score by the Bayesian method and obtained 3 scores, each of which took one of the above three aspects into account,respectively. For example, we adjusted the score for users with more review experince (experts).
+
+Then, we weighted these 3 scores equally and got the overall score which the distance depends on. 
 
 <i><h2 style="font-size:25px;">Subesetting the Amazon Review Database</h2></i>
 In order to focus on a specific area of the Amazon Movie Review dataset we decided to focus on the most popular populations of the Users (Top 100 Reviewers - Number of Reviews), Movies (Top 500 Movies Reviewed - Number of Reviews)
@@ -72,12 +89,6 @@ Points that are larger in purple, are the movies that our user mentioned previou
    <IMG SRC="MDS_FINAL.png" ALT="image" width=100%>
  </span>
 </div>
-
-<i><h2 style="font-size:25px;">Logistic Regression Model to Predict Oscar Winners</h2></i>
-As part of our analysis, we were curious if it would be possible to predict the winner of Best Picture based on information gathered through Amazon movie reviews. We began by joining the Amazon data with our Oscars data, which included variables such as whether or not they won Best Picture, and what year they were nominated in.
-After, we also joined the data with movie scores given by Twitter. Then we split into training and testing data.
-
-This predictive model is most likely biased as we had to use reviews posted before and after the Oscar nomination and ceremony dates to have a large enough sample size.
 
 <i><h2 style="font-size:25px;">D3 Visualization</h2></i>
 D3 was used to visualize what our network looks like in an interactive form. In Blue we have our user that was mentioned previously in the report. In Purple, we have the movies that our user has seen and the reccommendations in Light Blue. 
@@ -224,6 +235,14 @@ function dragstart(d) {
 </script>
 </d3_plot>
 
+<i><h2 style="font-size:25px;">Logistic Regression Model to Predict Oscar Winners</h2></i>
+As part of our analysis, we were curious if it would be possible to predict the winner of Best Picture based on information gathered through Amazon movie reviews. We began by joining the Amazon data with our Oscars data, which included variables such as whether or not they won Best Picture, and what year they were nominated in.
+After, we also joined the data with movie scores given by Twitter. Then we split into training and testing data.
+
+This predictive model is most likely biased as we had to use reviews posted before and after the Oscar nomination and ceremony dates to have a large enough sample size.
+
+
+
 ```r
 #################### Load Libraries ##################
 
@@ -277,7 +296,8 @@ summary(fit)$coeff[-1,4] < 0.05
 Our model fits very well, with an average of 81% accuracy in correctly choosing which nominated movies would win Best Picture. In addition, we analyzed the variables within the model to determine statistically significance. Interestingly, the Amazon movie review score was not deemed statistically significant, while the Twitter score and main genre were significant.
 
 
-<i><h2 style="font-size:25px;">Shiny App</h2></i>
+
+<i><h2 style="font-size:25px;">Recommendation Engine</h2></i>
 Based on the distance matrix we got from the network, we build a recommendation engine for oscar movies.
 
 Imagine this scenario...
@@ -301,9 +321,28 @@ Imagine this scenario...
 </div>
 <h1 style="text-align: center;">https://crimeradar.shinyapps.io/Recsys/</h1>
 
-How do we recommend?
+<i><h2 style="font-size:25px;">How do we recommend?</h2></i>
 
+Pretty simple!
 
+Choose the closest one to your favorite Oscar movie among Oscar nominations with the genre you want to try.
 
+<i><h2 style="font-size:25px;">How does it work?</h2></i>
 
+Excellent!
 
+This is our recommendation:<br><br>
+
+<div style="text-align: center;">
+ <span style="float:center;width: 200px;">
+   <IMG SRC="application.png" ALT="image" width="1000px">
+ </span>
+</div>
+<br>
+<h3>How about the recommendation from Amazon?</h3>
+<br>
+<div style="text-align: center;">
+ <span style="float:center;width: 200px;">
+   <IMG SRC="amazon.png" ALT="image" width="1000px">
+ </span>
+</div>
