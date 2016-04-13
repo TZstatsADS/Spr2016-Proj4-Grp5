@@ -205,93 +205,14 @@ Logistic Regression Model to Predict Oscar Winners
 </h2>
 <p></i> As part of our analysis, we were curious if it would be possible to predict the winner of Best Picture based on information gathered through Amazon movie reviews. We began by joining the Amazon data with our Oscars data, which included variables such as whether or not they won Best Picture, and what year they were nominated in. After, we also joined the data with movie scores given by Twitter. Then we split into training and testing data.</p>
 <p>This predictive model is most likely biased as we had to use reviews posted before and after the Oscar nomination and ceremony dates to have a large enough sample size.</p>
-<pre class="r"><code>#################### Load Libraries ##################
-
-library(dplyr)
-library(data.table)
-library(caret)
-
-#################### Prepare Data ####################
-movies &lt;- read.csv(&quot;movies2.csv&quot;, stringsAsFactors=FALSE)
-oscar_asin &lt;- read.csv(&quot;project4-team-5/data/oscar_nominations.csv&quot;, stringsAsFactors=FALSE)
-oscar_dates &lt;- read.csv(&quot;project4-team-5/data/oscar_dates.csv&quot;, stringsAsFactors=FALSE)
-twitter_data &lt;- read.csv(&quot;project4-team-5/data/oscar_winners_FINAL_twitter2.csv&quot;, stringsAsFactors=FALSE)
-twitter_data[14,]$Title = &quot;Crouching Tiger, Hidden Dragon&quot;
-twitter_data$Year&lt;-NULL
-twitter_data$Win&lt;-NULL
-twitter_data$ASIN&lt;-NULL
-twitter_data&lt;-twitter_data[1:98,]
-
-# Take first genre
-for(i in 1:length(twitter_data$Genre)){
-  twitter_data$Genre[i]&lt;-strsplit(twitter_data$Genre[i], &quot;|&quot;, fixed=TRUE)[[1]][1]
-}
-
-oscar_movies &lt;- left_join(oscar_asin, movies, by = c(&quot;ASIN&quot; = &quot;product_productid&quot;))
-final_data &lt;- subset(left_join(oscar_movies, twitter_data, by = c(&quot;Title&quot; = &quot;Title&quot;)), select=c(3,8,15,16))
-
-# Split into training and testing data
-train&lt;-sample_frac(final_data, 0.7)
-sid&lt;-as.numeric(rownames(train))
-test&lt;-final_data[-sid,]</code></pre>
-<p>Creating the logistic regression model was fairly easy. We chose to go with this model as it works well with categorical data, in our case, whether or not a movie wins Best Picture after being nominated.</p>
-<pre class="r"><code># Fit logistic regression model
-fit &lt;- glm(Win~Score+factor(Genre)+review_score,data=train,family=binomial(link=&#39;logit&#39;))
-fit.result &lt;- predict(fit, test)
-fit.result &lt;- ifelse(fit.result &gt; 0.5,1,0)
-error &lt;- mean(fit.result != test$Win)
-
-# Percent correctly classified
-print(paste0(&#39;Percent classified correctly &#39;, (1-error) * 100, &quot;%&quot;))
-summary(fit)
-
-# Statistically significant variables
-summary(fit)$coeff[-1,4] &lt; 0.05</code></pre>
-<p>Our model fits very well, with an average of 81% accuracy in correctly choosing which nominated movies would win Best Picture. In addition, we analyzed the variables within the model to determine statistically significance. Interestingly, the Amazon movie review score was not deemed statistically significant, while the Twitter score and main genre were significant.</p>
 <i>
 <h2 style="font-size:25px;">
-Shiny App
+D3 Visualization
 </h2>
-<p></i> Based on the distance matrix we got from the network, we build a recommendation engine for oscar movies.</p>
-<p>Imagine this scenario…</p>
-<i>
-<h3 style="font-size:20px;color: #9ACD32;">
-You wanna watch a movie but have no idea what movie to see.
-</h3>
-<p></i></p>
-<i>
-<h3 style="font-size:20px;color: #9ACD32;">
-You want to see an Oscar movie but there are so many movies that have won the Oscars.
-</h3>
-<p></i></p>
-<i>
-<h3 style="font-size:20px;color: #9ACD32;">
-You want a movie with a specific genre but don’t wanna waste time on a stinker.<br> <br>
-</h3>
-<p></i></p>
-<div style="text-align: center;">
-<p><span style="float:center;width: 200px;"> <IMG SRC="images-3.jpeg" ALT="image" width="200px"> </span></p>
-</div>
-<br> <br>
-<div style="text-align: left;">
-<p><span style="float:center;width: 200px;"> <IMG SRC="red-arrow-right-hi.png" ALT="image" width="100px"> </span></p>
-</div>
-<h1 style="text-align: center;">
-<a href="https://crimeradar.shinyapps.io/Recsys/" class="uri">https://crimeradar.shinyapps.io/Recsys/</a>
-</h1>
-<p>How do we recommend?</p>
-<div id="d3" class="section level2">
-<h2>D3</h2>
-<pre class="r"><code>cat(&#39;
-&lt;script&gt;
-  d3.select(&quot;body&quot;).append(&quot;p&quot;).text(&quot;d3 made me&quot;)
-&lt;/script&gt;
-&#39;)</code></pre>
+<p></i> D3 was used to visualize what our network looks like in an interactive form. In Blue we have our user that was mentioned previously in the report. In Purple, we have the movies that our user has seen and the reccommendations in Light Blue.</p>
+<p>In gold we have the oscar movies, Large Dark Gold are the movies that only one user has seen and each red node represents a user. Note that all other, non-oscar movies were removed to provide clairty. The black node is the user in the network with the most number of movies reviewed.</p>
+Interaction: You can click and drag nodes around to see affects on network and they will stay in place. Also hovering over an node will allow you to see the number of neighbors that it has. <d3_plot>
 <script>
-  d3.select("body").append("p").text("d3 made me")
-</script>
-<script>
-
 var width = 960,
     height = 500;
     radius = 10;
@@ -303,7 +224,7 @@ var force = d3.layout.force()
     .linkDistance(100)
     .size([width, height]);
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("d3_plot").append("svg")
     .attr("width", width)
     .attr("height", height);
 
@@ -427,7 +348,82 @@ function dragstart(d) {
   d3.select(this).classed("fixed", d.fixed = true);
 }
 </script>
+<p></d3_plot></p>
+<pre class="r"><code>#################### Load Libraries ##################
+
+library(dplyr)
+library(data.table)
+library(caret)
+
+#################### Prepare Data ####################
+movies &lt;- read.csv(&quot;movies2.csv&quot;, stringsAsFactors=FALSE)
+oscar_asin &lt;- read.csv(&quot;project4-team-5/data/oscar_nominations.csv&quot;, stringsAsFactors=FALSE)
+oscar_dates &lt;- read.csv(&quot;project4-team-5/data/oscar_dates.csv&quot;, stringsAsFactors=FALSE)
+twitter_data &lt;- read.csv(&quot;project4-team-5/data/oscar_winners_FINAL_twitter2.csv&quot;, stringsAsFactors=FALSE)
+twitter_data[14,]$Title = &quot;Crouching Tiger, Hidden Dragon&quot;
+twitter_data$Year&lt;-NULL
+twitter_data$Win&lt;-NULL
+twitter_data$ASIN&lt;-NULL
+twitter_data&lt;-twitter_data[1:98,]
+
+# Take first genre
+for(i in 1:length(twitter_data$Genre)){
+  twitter_data$Genre[i]&lt;-strsplit(twitter_data$Genre[i], &quot;|&quot;, fixed=TRUE)[[1]][1]
+}
+
+oscar_movies &lt;- left_join(oscar_asin, movies, by = c(&quot;ASIN&quot; = &quot;product_productid&quot;))
+final_data &lt;- subset(left_join(oscar_movies, twitter_data, by = c(&quot;Title&quot; = &quot;Title&quot;)), select=c(3,8,15,16))
+
+# Split into training and testing data
+train&lt;-sample_frac(final_data, 0.7)
+sid&lt;-as.numeric(rownames(train))
+test&lt;-final_data[-sid,]</code></pre>
+<p>Creating the logistic regression model was fairly easy. We chose to go with this model as it works well with categorical data, in our case, whether or not a movie wins Best Picture after being nominated.</p>
+<pre class="r"><code># Fit logistic regression model
+fit &lt;- glm(Win~Score+factor(Genre)+review_score,data=train,family=binomial(link=&#39;logit&#39;))
+fit.result &lt;- predict(fit, test)
+fit.result &lt;- ifelse(fit.result &gt; 0.5,1,0)
+error &lt;- mean(fit.result != test$Win)
+
+# Percent correctly classified
+print(paste0(&#39;Percent classified correctly &#39;, (1-error) * 100, &quot;%&quot;))
+summary(fit)
+
+# Statistically significant variables
+summary(fit)$coeff[-1,4] &lt; 0.05</code></pre>
+<p>Our model fits very well, with an average of 81% accuracy in correctly choosing which nominated movies would win Best Picture. In addition, we analyzed the variables within the model to determine statistically significance. Interestingly, the Amazon movie review score was not deemed statistically significant, while the Twitter score and main genre were significant.</p>
+<i>
+<h2 style="font-size:25px;">
+Shiny App
+</h2>
+<p></i> Based on the distance matrix we got from the network, we build a recommendation engine for oscar movies.</p>
+<p>Imagine this scenario…</p>
+<i>
+<h3 style="font-size:20px;color: #9ACD32;">
+You wanna watch a movie but have no idea what movie to see.
+</h3>
+<p></i></p>
+<i>
+<h3 style="font-size:20px;color: #9ACD32;">
+You want to see an Oscar movie but there are so many movies that have won the Oscars.
+</h3>
+<p></i></p>
+<i>
+<h3 style="font-size:20px;color: #9ACD32;">
+You want a movie with a specific genre but don’t wanna waste time on a stinker.<br> <br>
+</h3>
+<p></i></p>
+<div style="text-align: center;">
+<p><span style="float:center;width: 200px;"> <IMG SRC="images-3.jpeg" ALT="image" width="200px"> </span></p>
 </div>
+<br> <br>
+<div style="text-align: left;">
+<p><span style="float:center;width: 200px;"> <IMG SRC="red-arrow-right-hi.png" ALT="image" width="100px"> </span></p>
+</div>
+<h1 style="text-align: center;">
+<a href="https://crimeradar.shinyapps.io/Recsys/" class="uri">https://crimeradar.shinyapps.io/Recsys/</a>
+</h1>
+<p>How do we recommend?</p>
 
 
 
