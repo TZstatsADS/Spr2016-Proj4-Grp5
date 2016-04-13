@@ -106,7 +106,7 @@ Points that are larger in purple, are the movies that our user mentioned previou
 </div>
 
 <i><h2 style="font-size:25px;">D3 Visualization</h2></i>
-D3 was used to visualize what our network looks like in an interactive form. In Blue we have our user that was mentioned previously in the report. In Purple, we have the movies that our user has seen and the reccommendations in Light Blue. 
+D3 was used to visualize what our network looks like in an interactive form. In Blue we have our user that was mentioned previously in the report. In Purple, we have the movies that our user has seen.
 
 In gold we have the oscar movies, Large Dark Gold are the movies that only one user has seen and each red node represents a user. Note that all other, non-oscar movies were removed to provide clairty. The black node is the user in the network with the most number of movies reviewed.
 
@@ -175,6 +175,7 @@ d3.json("data.json2", function(error, graph) {
             if(d.id == "B004FM2ENU" ){return 7;}
             else if (+d.neigh == 1){return 7;} 
             if(d.id == "B004FM2ENU" ){return 10;}
+            if (d.id == "A19ZXK9HHVRV1X"){return 7;} 
 
             if (d.desc == "movies") {return 5;} 
             else {return 4;}}) 
@@ -184,16 +185,16 @@ d3.json("data.json2", function(error, graph) {
             if(d.id == "American Beauty" ){return "#800080";}
             if(d.id == "District 9" ){return "#800080";}
             if(d.id == "The Hurt Locker" ){return "#800080";}
-            if(d.id == "Up" ){return "#43C6DB";}
-            if(d.id == "The Departed" ){return "#43C6DB";}
-            if(d.id == "The Insider" ){return "#43C6DB";}
-            if(d.id == "Borat" ){return "#43C6DB";}
-            if(d.id == "Borat" ){return "#43C6DB";}
+            //if(d.id == "Up" ){return "#43C6DB";}
+            //if(d.id == "The Departed" ){return "#43C6DB";}
+            //if(d.id == "The Insider" ){return "#43C6DB";}
+            //if(d.id == "Borat" ){return "#43C6DB";}
+            //if(d.id == "Borat" ){return "#43C6DB";}
 
             if(d.id == "B004FM2ENU" ){return "orange";}
             if(d.id == "A1J2931UBBJPXM" ){return "blue";}
             else if (+d.neigh == 1){return "#B8860B";} 
-            else if (+d.neigh == 57){return "black";} 
+            else if (d.id == "A19ZXK9HHVRV1X"){return "black";} 
 
             else if (d.desc == "movies") {return "green";} 
             else if (d.desc == "oscar") {return "#FFD700";} 
