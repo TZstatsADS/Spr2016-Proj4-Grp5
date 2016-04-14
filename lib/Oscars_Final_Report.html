@@ -136,7 +136,7 @@ April 13, 2016
 </center>
 </div>
 <div style="text-align: center;">
-<span style="float:center;width: 200px;"> <img src="img/Academy_Award_trophy.jpg" ALT="image" width="100px"> </span>
+<p><span style="float:center;width: 200px;"> <img src="img/Academy_Award_trophy.jpg" ALT="image" width="100px"> </span></p>
 </div>
 <i>
 <h2 style="font-size:25px;">
@@ -149,7 +149,7 @@ Movie Graph Theory
 </h2>
 </i> Graph theory was used in order to determine distances between Users, Movies and Oscars. Graph theory offers a nice way to try and relationships between users and movies. Below is an example of how to use graph theory using Amazon reviews:
 <div style="text-align: center;">
-<span style="float:center;width: 200px;"> <IMG SRC="img/Slide1.jpg" ALT="image" width="450px"> </span>
+<p><span style="float:center;width: 200px;"> <IMG SRC="img/Slide1.jpg" ALT="image" width="450px"> </span></p>
 </div>
 <p>From this graph we now have a metric that we can use between all pairwise nodes within a graph. For instance we can now find similar users within a graph, by closest distance and similar movies within the same way.</p>
 <i>
@@ -158,7 +158,7 @@ Distance Adjustment and Calculation
 </h2>
 <p></i> In order to improve our network, we want to define the distance by the review scores. The bigger the review score, the closer the user and the movie are. However, does all the reviews are reliable? How do we measure the credibility of each review?</p>
 <div style="text-align: center;">
-<span style="float:center;width: 200px;"> <IMG SRC="img/weightededge.png" ALT="image" width="400px"> </span>
+<p><span style="float:center;width: 200px;"> <IMG SRC="img/weightededge.png" ALT="image" width="400px"> </span></p>
 </div>
 <pre class="r"><code>movies.summary&lt;-filter(movies.raw,review_h&lt;=1)%&gt;%
      mutate(reviewUAvg=(review_score*user.count+3*3)/(user.count+3),
@@ -172,7 +172,7 @@ Subesetting the Amazon Review Database
 </h2>
 <p></i> In order to focus on a specific area of the Amazon Movie Review dataset we decided to focus on the most popular populations of the Users (Top 100 Reviewers - Number of Reviews), Movies (Top 500 Movies Reviewed - Number of Reviews)</p>
 <div style="text-align: center;">
-<span style="float:center;width: 200px;"> <IMG SRC="img/Slide6.jpg" ALT="image" width="400px"> </span>
+<p><span style="float:center;width: 200px;"> <IMG SRC="img/Slide6.jpg" ALT="image" width="400px"> </span></p>
 </div>
 <i>
 <h2 style="font-size:25px;">
@@ -181,7 +181,7 @@ Movies Seen by a Reviewer
 <p></i> As an example of our graph what we will do is choose the user with the smallest number of reviewed movies. In this case on of the top reviewers had reviewed only 4 of the 498 movies within our dataset.</p>
 This user had seen the following movies:
 <div style="text-align: center;">
-<span style="float:center;width: 200px;"> <IMG SRC="img/Slide2.jpg" ALT="image" width="200px"> </span>
+<p><span style="float:center;width: 200px;"> <IMG SRC="img/Slide2.jpg" ALT="image" width="200px"> </span></p>
 </div>
 <i>
 <h2 style="font-size:25px;">
@@ -189,7 +189,7 @@ Recommended Movies Based on Network Distance
 </h2>
 <p></i> From our network we can look up a user, and find the distances between that user, and all other nodes. By filtering out the user nodes, and looking at the closest movies we get the following reccomendations for our user.</p>
 <div style="text-align: center;">
-<span style="float:center;width: 200px;"> <IMG SRC="img/Slide3.jpg" ALT="image" width="400px"> </span>
+<p><span style="float:center;width: 200px;"> <IMG SRC="img/Slide3.jpg" ALT="image" width="400px"> </span></p>
 </div>
 <i>
 <h2 style="font-size:25px;">
@@ -197,7 +197,7 @@ Farther Movies from User Based on Network Distance
 </h2>
 <p></i> We can also look at the movies that are farthest away from our user or the movies that we would least likely suggest.</p>
 <div style="text-align: center;">
-<span style="float:center;width: 200px;"> <IMG SRC="img/Slide4.jpg" ALT="image" width="400px"> </span>
+<p><span style="float:center;width: 200px;"> <IMG SRC="img/Slide4.jpg" ALT="image" width="400px"> </span></p>
 </div>
 <i>
 <h2 style="font-size:25px;">
@@ -209,7 +209,7 @@ Network Visualization
 <p>Points that are larger, and in gold are Oscar movies, with other movies that are colored by their grouping that was produced using the Gaussian Mixture Model. Labels of each point has it’s group number and a title if available.</p>
 <p>Points that are larger in purple, are the movies that our user mentioned previously has viewed and the larger points in light blue, are the recommended movies. It might not be as insightful on suggesting reviews, becasue the dimension has been reduced but we can see that Up is very close to Disctrict 9 and the Aviator that our user has already viewed. It does become apparent that the movies that are the farthest from our user are some of the farthest within the plot below</p>
 <div style="text-align: center;">
-<span style="float:center;width: 200px;"> <IMG SRC="img/MDS_FINAL_2.png" ALT="image" width=100%> </span>
+<p><span style="float:center;width: 200px;"> <IMG SRC="img/MDS_FINAL_2.png" ALT="image" width=100%> </span></p>
 </div>
 <i>
 <h2 style="font-size:25px;">
@@ -406,7 +406,7 @@ summary(fit)
 summary(fit)$coeff[-1,4] &lt; 0.05</code></pre>
 <p>Our model fits very well, with an average of 81% accuracy in correctly choosing which nominated movies would win Best Picture. In addition, we analyzed the variables within the model to determine statistically significance. Interestingly, the Amazon movie review score was not deemed statistically significant, while the Twitter score and main genre were significant.</p>
 <div style="text-align: center;">
-<span style="float:center;width: 200px;"> <IMG SRC="img/statistically_sig.png" ALT="image" width=100%> </span>
+<p><span style="float:center;width: 200px;"> <IMG SRC="img/statistically_sig.png" ALT="image" width=100%> </span></p>
 </div>
 <i>
 <h2 style="font-size:25px;">
@@ -430,11 +430,11 @@ You want a movie with a specific genre but don’t want to waste time on a stink
 </h3>
 <p></i></p>
 <div style="text-align: center;">
-<span style="float:center;width: 200px;"> <IMG SRC="img/images-3.jpeg" ALT="image" width="200px"> </span>
+<p><span style="float:center;width: 200px;"> <IMG SRC="img/images-3.jpeg" ALT="image" width="200px"> </span></p>
 </div>
 <br> <br>
 <div style="text-align: left;">
-<span style="float:center;width: 200px;"> <IMG SRC="img/red-arrow-right-hi.png" ALT="image" width="100px"> </span>
+<p><span style="float:center;width: 200px;"> <IMG SRC="img/red-arrow-right-hi.png" ALT="image" width="100px"> </span></p>
 </div>
 <h1 style="text-align: center;">
 <a href="https://crimeradar.shinyapps.io/Recsys/" class="uri">https://crimeradar.shinyapps.io/Recsys/</a>
@@ -455,7 +455,7 @@ How does it work?
 <p>Recommend a movie of certain type, which has the smallest distance with the movie chosen by users.</p>
 <p>This is our recommendation:<br><br></p>
 <div style="text-align: center;">
-<span style="float:center;width: 200px;"> <IMG SRC="img/application.png" ALT="image" width="1000px"> </span>
+<p><span style="float:center;width: 200px;"> <IMG SRC="img/application.png" ALT="image" width="1000px"> </span></p>
 </div>
 <br>
 <h3>
@@ -463,7 +463,7 @@ How about the recommendation from Amazon?
 </h3>
 <br>
 <div style="text-align: center;">
-<span style="float:center;width: 200px;"> <IMG SRC="img/amazon.png" ALT="image" width="1000px"> </span>
+<p><span style="float:center;width: 200px;"> <IMG SRC="img/amazon.png" ALT="image" width="1000px"> </span></p>
 </div>
 <i>
 <h2 style="font-size:25px;">
